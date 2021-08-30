@@ -43,8 +43,7 @@ export default {
       }
       axios.post("http://localhost:3000/api/users/auth",user).then((res)=>{
         if(res.status==200){
-          this.$session.set('token', res.data.token);
-          this.$session.set('email',this.user.email)
+          this.$session.set('username',this.user.email)
           this.$session.set('isAuthenticated',true)
           this.$store.commit('check',this)
           this.$router.push('dashboard')

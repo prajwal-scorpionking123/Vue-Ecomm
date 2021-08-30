@@ -5,13 +5,26 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-     isAuthenticated:false
+     isAuthenticated:false,
+     carts:new Map(),
+     size:0
   },
   mutations: {
     check(state,app){
-      if(app.$session.exists("token")){
+      if(app.$session.exists("username")){
         state.isAuthenticated=true
       }
+    },
+    addToCart(state,product){
+      if(!state.carts.get(product.product)){
+        state.size++
+      }
+           state.carts.set(product.product,product)
+    }
+  },
+  getters:{
+    countCartItems:state=>{
+      return state.size
     }
   },
   actions: {

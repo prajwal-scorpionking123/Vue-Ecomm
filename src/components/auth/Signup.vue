@@ -59,7 +59,7 @@ export default {
             "password":this.user.password,
             "role":2
         }
-        axios.post("http://localhost:3000/api/users/",user).then((res)=>{
+        axios.post("http://localhost:3000/api/users",user).then((res)=>{
             if(res.status==200){
                 this.$router.push('signin')
             }else{

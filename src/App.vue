@@ -31,6 +31,14 @@
           <!-- <router-link v-if="isAuthenticated" class="nav-link btn-link" to="/">logout</router-link> -->
           <button v-if="$store.state.isAuthenticated" class="nav-link btn" @click="logout">Logout</button>
         </li>
+         <li class="nav-item">
+          <!-- <router-link v-if="isAuthenticated" class="nav-link btn-link" to="/">logout</router-link> -->
+          <button v-if="$store.state.isAuthenticated" class="btn btn-danger" >Cart {{countCartItems}}</button>
+        </li>
+        <li v-if="showBuy" class="nav-item">
+          <!-- <router-link v-if="isAuthenticated" class="nav-link btn-link" to="/">logout</router-link> -->
+          <button v-if="$store.state.isAuthenticated" class="btn btn-danger" >Cart {{countCartItems}}</button>
+        </li>
       </ul>
     </div>
   </div>
@@ -39,10 +47,11 @@
   </div>
 </template>
 <script>
-
-
+import {mapGetters} from "vuex"
 export default {
-   
+   computed:{
+    ...mapGetters(["countCartItems"])
+   },
    methods:{
       logout(){
         this.$session.clear("token")

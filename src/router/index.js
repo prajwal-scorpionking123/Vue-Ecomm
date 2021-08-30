@@ -5,7 +5,7 @@ import Signup from "../components/auth/Signup"
 import Signin from "../components/auth/Signin"
 import Products from "../components/Products"
 import Dashboard from "../components/Dashboard"
-
+import Cart from "../components/Cart"
 Vue.use(VueRouter)
 
 const routes = [
@@ -33,6 +33,11 @@ const routes = [
     path:'/products',
     name:'products',
     component:Products
+  },
+  {
+    path:"/cart",
+    name:'cart',
+    component:Cart
   }
 ]
 
