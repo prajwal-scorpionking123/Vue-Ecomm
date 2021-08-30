@@ -6,7 +6,10 @@
 
 <script>
 export default {
- name:'Dashboard'
+ name:'Dashboard',
+ created(){
+    this.$store.commit('check',this)
+ }
 }
 </script>
 

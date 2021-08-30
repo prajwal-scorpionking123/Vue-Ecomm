@@ -16,19 +16,20 @@
           <router-link class="nav-link" to="/">Home</router-link>
         </li>
         <li class="nav-item">
-          <router-link class="nav-link" v-if="isAuthenticated" to="/dashboard">Dashboard</router-link>
+          <router-link class="nav-link" v-if="$store.state.isAuthenticated" to="/dashboard">Dashboard</router-link>
         </li>
-        <li class="nav-item" v-if="!isAuthenticated">
+        <li class="nav-item" v-if="!$store.state.isAuthenticated">
           <router-link  class="nav-link" to="/auth/signin">Signin</router-link>
         </li>
-        <li class="nav-item" v-if="!isAuthenticated">
+        <li class="nav-item" v-if="!$store.state.isAuthenticated">
           <router-link  class="nav-link" to="/auth/signup">Signup</router-link>
         </li>
         <li class="nav-item">
-          <router-link v-if="isAuthenticated" class="nav-link" to="/products">Products</router-link>
+          <router-link v-if="$store.state.isAuthenticated" class="nav-link" to="/products">Products</router-link>
         </li>
         <li class="nav-item">
-          <router-link v-if="isAuthenticated" class="nav-link" ><button @click="logout">logout</button> </router-link>
+          <!-- <router-link v-if="isAuthenticated" class="nav-link btn-link" to="/">logout</router-link> -->
+          <button v-if="$store.state.isAuthenticated" class="nav-link btn" @click="logout">Logout</button>
         </li>
       </ul>
     </div>
@@ -38,29 +39,23 @@
   </div>
 </template>
 <script>
-// import {mapState} from "vuex"
+
+
 export default {
-  //  computed:{
-  //    ...mapState(["isAuthenticated"])
-  //  },
-   data(){
-     return{
-       isAuthenticated:false
-     }
-   },
+   
    methods:{
-     logout(){
-       this.$session.clear('token')
-     }
+      logout(){
+        this.$session.clear("token")
+        this.$session.clear("isAuthenticated")
+        this.$session.clear("email")
+        this.$store.state.isAuthenticated=false
+        this.$router.push("/")
+      }
    },
    created(){
-    //  var app=this
-    //  this.$store.commit('checkToken',app)
-    if(this.$session.exists("token")){
-          this.$session.set('isAuthenticated',true)
-          this.isAuthenticated=true
-      }
-   }
+      // 
+      this.$store.commit('check',this)
+   } 
 }
 </script>
 

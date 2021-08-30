@@ -70,6 +70,9 @@ export default {
             console.log(err)
         })
       }
+  },
+  created(){
+       this.$store.commit('check',this)
   }
 }
 </script>

@@ -5,14 +5,14 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    // isAuthenticated:false
+     isAuthenticated:false
   },
   mutations: {
-    // checkToken(state,app){
-      // if(app.$session.exists("token")){
-      //   state.isAuthenticated=true
-      // }
-    // }
+    check(state,app){
+      if(app.$session.exists("token")){
+        state.isAuthenticated=true
+      }
+    }
   },
   actions: {
   },

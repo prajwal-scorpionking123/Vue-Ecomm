@@ -45,6 +45,8 @@ export default {
         if(res.status==200){
           this.$session.set('token', res.data.token);
           this.$session.set('email',this.user.email)
+          this.$session.set('isAuthenticated',true)
+          this.$store.commit('check',this)
           this.$router.push('dashboard')
         }else{
           this.errMsg=res.data.status

@@ -6,7 +6,10 @@
 
 <script>
 export default {
-name:"Products"
+name:"Products",
+created(){
+   this.$store.commit('check',this)
+}
 }
 </script>
 
